@@ -1,0 +1,18 @@
+AppBundle\Entity\Usuario:
+    pepe:
+      nombre: Pepe
+      apellidos: Gotera Gotera
+      ordenanza: true
+      secretario: false
+
+    secretario:
+      nombre: <firstName()>
+      apellidos: '<lastName()> <lastName()>'
+      ordenanza: false
+      secretario: true
+
+    usuario_{1..20}:
+      nombre: <firstName()>
+      apellidos: '<lastName()> <lastName()>'
+      ordenanza: <boolean(10)>
+      secretario: false

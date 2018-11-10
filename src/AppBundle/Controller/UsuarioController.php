@@ -12,6 +12,10 @@ class UsuarioController extends Controller
      */
     public function usuarioListarAction()
     {
-        return $this->render('usuario/listar.html.twig');
+        $todosUsuarios = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findAll();
+
+        return $this->render('usuario/listar.html.twig', [
+            'usuarios' => $todosUsuarios
+        ]);
     }
 }

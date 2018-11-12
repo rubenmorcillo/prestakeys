@@ -14,7 +14,7 @@ AppBundle\Entity\Usuario:
     usuario_{1..20}:
       nombre: <firstName()>
       apellidos: '<lastName()> <lastName()>'
-      ordenanza: <boolean(10)>
+      ordenanza: <boolean(5)>
       secretario: false
 
 AppBundle\Entity\Llave:

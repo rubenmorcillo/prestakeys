@@ -44,6 +44,13 @@ class Llave
     private $usuario;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Dependencia")
+     * @ORM\JoinColumn(nullable=false)
+     * @var Dependencia
+     */
+    private $dependencia;
+
+    /**
      * @return int
      */
     public function getId()
@@ -120,6 +127,24 @@ class Llave
     public function setUsuario(Usuario $usuario = null)
     {
         $this->usuario = $usuario;
+        return $this;
+    }
+
+    /**
+     * @return Dependencia
+     */
+    public function getDependencia()
+    {
+        return $this->dependencia;
+    }
+
+    /**
+     * @param Dependencia $dependencia
+     * @return Llave
+     */
+    public function setDependencia(Dependencia $dependencia)
+    {
+        $this->dependencia = $dependencia;
         return $this;
     }
 }

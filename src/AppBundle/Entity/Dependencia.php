@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +32,13 @@ class Dependencia
      */
     private $responsables;
 
+    public function __construct()
+    {
+        // Recordatorio: las colecciones hay que inicializarlas en el constructor
+        $this->responsables = new ArrayCollection();
+    }
+
+
     /**
      * @return int
      */
@@ -54,6 +62,24 @@ class Dependencia
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        return $this;
+    }
+
+    /**
+     * @return Usuario[]
+     */
+    public function getResponsables(): array
+    {
+        return $this->responsables;
+    }
+
+    /**
+     * @param Usuario[] $responsables
+     * @return Dependencia
+     */
+    public function setResponsables(array $responsables)
+    {
+        $this->responsables = $responsables;
         return $this;
     }
 }

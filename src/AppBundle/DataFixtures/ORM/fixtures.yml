@@ -6,7 +6,7 @@ AppBundle\Entity\Usuario:
       secretario: false
 
     secretario:
-      nombre: <firstName()>
+      nombre: Secretario
       apellidos: '<lastName()> <lastName()>'
       ordenanza: false
       secretario: true
@@ -17,8 +17,29 @@ AppBundle\Entity\Usuario:
       ordenanza: <boolean(5)>
       secretario: false
 
+AppBundle\Entity\Dependencia:
+  dependencia_sala_profesorado:
+    nombre: 'Sala de profesorado'
+
+  dependencia_aula{1..10}:
+    nombre: 'Aula <current()>'
+    responsables: '<numberBetween(1, 2)>x @usuario*'
+
+  dependencia_departamento{1..10}:
+    nombre: 'Departamento <current()>'
+    responsables: '1x @usuario*'
+
 AppBundle\Entity\Llave:
     llave_{1..80}:
-      descripcion: <sentence()>
+      descripcion: '<word()>'
       codigo (unique): <randomNumber(8)>
       usuario: '15%? @usuario_*'
+      fechaPrestamo: '<dateTimeBetween("-3 months", "now")>'
+      dependencia: '@dependencia*'
+
+AppBundle\Entity\Historia:
+    historia_{1..50}:
+      llave: '@llave*'
+      usuario: '@usuario*'
+      fechaPrestamo: '<dateTimeBetween("-3 months", "now")>'
+      fechaDevolucion: '<dateTimeBetween($fechaPrestamo, "now")>'

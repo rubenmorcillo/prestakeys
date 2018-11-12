@@ -117,7 +117,7 @@ class Llave
      * @param Usuario|null $usuario
      * @return Llave
      */
-    public function setUsuario($usuario = null)
+    public function setUsuario(Usuario $usuario = null)
     {
         $this->usuario = $usuario;
         return $this;

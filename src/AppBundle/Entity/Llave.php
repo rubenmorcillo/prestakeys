@@ -104,4 +104,22 @@ class Llave
         $this->fechaPrestamo = $fechaPrestamo;
         return $this;
     }
+
+    /**
+     * @return Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param Usuario|null $usuario
+     * @return Llave
+     */
+    public function setUsuario($usuario = null)
+    {
+        $this->usuario = $usuario;
+        return $this;
+    }
 }

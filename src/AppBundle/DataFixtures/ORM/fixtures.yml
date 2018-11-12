@@ -16,3 +16,9 @@ AppBundle\Entity\Usuario:
       apellidos: '<lastName()> <lastName()>'
       ordenanza: <boolean(10)>
       secretario: false
+
+AppBundle\Entity\Llave:
+    llave_{1..80}:
+      descripcion: <sentence()>
+      codigo (unique): <randomNumber(8)>
+      usuario: '15%? @usuario_*'

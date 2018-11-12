@@ -25,6 +25,13 @@ class Dependencia
     private $nombre;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Usuario")
+     * @ORM\JoinTable(name="responsable")
+     * @var Usuario[]
+     */
+    private $responsables;
+
+    /**
      * @return int
      */
     public function getId()

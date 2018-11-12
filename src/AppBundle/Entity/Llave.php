@@ -37,7 +37,7 @@ class Llave
     private $fechaPrestamo;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="llavesPrestadas")
      * @ORM\JoinColumn(nullable=true)
      * @var Usuario
      */

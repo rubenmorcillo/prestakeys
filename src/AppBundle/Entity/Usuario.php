@@ -43,6 +43,12 @@ class Usuario
     private $secretario;
 
     /**
+     * @ORM\OneToMany(targetEntity="Llave", mappedBy="usuario")
+     * @var Llave[]
+     */
+    private $llavesPrestadas;
+
+    /**
      * @return int
      */
     public function getId()

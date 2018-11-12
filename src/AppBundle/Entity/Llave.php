@@ -25,7 +25,7 @@ class Llave
     private $descripcion;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @var string
      */
     private $codigo;

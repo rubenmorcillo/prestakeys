@@ -37,6 +37,13 @@ class Llave
     private $fechaPrestamo;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumn(nullable=true)
+     * @var Usuario
+     */
+    private $usuario;
+
+    /**
      * @return int
      */
     public function getId()

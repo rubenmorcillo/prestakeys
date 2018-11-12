@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,6 +48,12 @@ class Usuario
      * @var Llave[]
      */
     private $llavesPrestadas;
+
+    public function __construct()
+    {
+        // Importante: hay que inicializar las colecciones en el constructor
+        $this->llavesPrestadas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -125,6 +132,24 @@ class Usuario
     public function setSecretario($secretario)
     {
         $this->secretario = $secretario;
+        return $this;
+    }
+
+    /**
+     * @return Llave[]
+     */
+    public function getLlavesPrestadas()
+    {
+        return $this->llavesPrestadas;
+    }
+
+    /**
+     * @param Llave[] $llavesPrestadas
+     * @return Usuario
+     */
+    public function setLlavesPrestadas($llavesPrestadas)
+    {
+        $this->llavesPrestadas = $llavesPrestadas;
         return $this;
     }
 }

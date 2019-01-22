@@ -5,6 +5,12 @@ AppBundle\Entity\Usuario:
       ordenanza: true
       secretario: false
 
+    ordenanza_{1..3}:
+      nombre: <es_ES:firstName()>
+      apellidos: '<es_ES:lastName()> <es_ES:lastName()>'
+      ordenanza: true
+      secretario: false
+
     secretario:
       nombre: Secretario
       apellidos: '<es_ES:lastName()> <es_ES:lastName()>'
@@ -23,7 +29,7 @@ AppBundle\Entity\Dependencia:
 
   dependencia_aula{1..10}:
     nombre: 'Aula <current()>'
-    responsables: '<numberBetween(1, 2)>x @usuario*'
+    responsables: '1x @usuario*'
 
   dependencia_departamento{1..10}:
     nombre: 'Departamento <current()>'
@@ -36,6 +42,7 @@ AppBundle\Entity\Llave:
       usuario: '15%? @usuario_*'
       fechaPrestamo: '<dateTimeBetween("-3 months", "now")>'
       dependencia: '@dependencia*'
+      prestatario: '@ordenanza*'
 
 AppBundle\Entity\Historia:
     historia_{1..50}:

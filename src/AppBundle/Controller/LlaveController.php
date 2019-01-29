@@ -25,9 +25,9 @@ class LlaveController extends Controller
      */
     public function listarPrestadasConRetrasoAction(LlaveRepository $llaveRepository)
     {
-        // listar llaves que llevan más de 7 días sin devolver
+        // listar llaves que llevan más de X días sin devolver
         $fecha = new \DateTime();
-        $dias = 7;
+        $dias = $this->getParameter('dias_de_retraso');
         $fecha->modify("-$dias dias");
 
         $llaves = $llaveRepository->findPrestadasAntesDeFecha($fecha);

@@ -19,3 +19,5 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     dias_de_retraso: 7
+    correo_notificacion: ejemplo@ejemplo.com
+

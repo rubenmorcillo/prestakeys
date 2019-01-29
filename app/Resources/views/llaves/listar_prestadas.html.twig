@@ -5,26 +5,5 @@
 {% block content %}
     <h1>Listado de llaves prestadas</h1>
 
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Descripción</th>
-                <th>Dependencia</th>
-                <th>Fecha de préstamo</th>
-                <th>Prestada a</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for llave in llaves %}
-                <tr>
-                    <td>{{ llave.codigo }}</td>
-                    <td>{{ llave.descripcion }}</td>
-                    <td>{{ llave.dependencia.nombre }}</td>
-                    <td>{{ llave.fechaPrestamo|date('d/m/Y') }}</td>
-                    <td>{{ llave.usuario.nombre }} {{ llave.usuario.apellidos }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% include 'llaves/listar_partial.html.twig' %}
 {% endblock %}

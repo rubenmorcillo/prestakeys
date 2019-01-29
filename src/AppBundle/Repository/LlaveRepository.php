@@ -13,14 +13,28 @@ class LlaveRepository extends ServiceEntityRepository
         parent::__construct($registry, Llave::class);
     }
 
-    public function findPrestadas()
+    public function findPrestadasQueryBuilder()
     {
         return $this->createQueryBuilder('l')
             ->addSelect('d')
             ->addSelect('u')
             ->join('l.dependencia', 'd')
             ->join('l.usuario', 'u')
-            ->orderBy('l.fechaPrestamo')
+            ->orderBy('l.fechaPrestamo');
+    }
+
+    public function findPrestadas()
+    {
+        return $this->findPrestadasQueryBuilder()
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findPrestadasAntesDeFecha(\DateTime $fecha)
+    {
+        return $this->findPrestadasQueryBuilder()
+            ->where('l.fechaPrestamo < :fecha')
+            ->setParameter('fecha', $fecha)
             ->getQuery()
             ->getResult();
     }

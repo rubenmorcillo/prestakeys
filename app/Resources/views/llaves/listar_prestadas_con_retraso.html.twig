@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Listado de llaves prestadas con retraso{% endblock %}
+
+{% block content %}
+    <h1>Listado de llaves prestadas con retraso</h1>
+
+    Aquí se muestran las llaves que llevan más de {{ dias }} sin devolver.
+
+    {% include 'llaves/listar_partial.html.twig' %}
+{% endblock %}

@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Llave;
 use AppBundle\Repository\LlaveRepository;
+use AppBundle\Service\NumerosRomanos;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,8 +25,10 @@ class LlaveController extends Controller
     /**
      * @Route("/llave/prestadas/con_retraso", name="llave_listar_prestadas_con_retraso")
      */
-    public function listarPrestadasConRetrasoAction(LlaveRepository $llaveRepository)
-    {
+    public function listarPrestadasConRetrasoAction(
+        LlaveRepository $llaveRepository,
+        NumerosRomanos $numerosRomanos
+    ) {
         // listar llaves que llevan más de X días sin devolver
         $fecha = new \DateTime();
         $dias = $this->getParameter('dias_de_retraso');
@@ -35,7 +38,7 @@ class LlaveController extends Controller
 
         return $this->render('llaves/listar_prestadas_con_retraso.html.twig', [
             'llaves' => $llaves,
-            'dias' => $dias
+            'dias' => $numerosRomanos->decimalARomano($dias)
         ]);
     }
 

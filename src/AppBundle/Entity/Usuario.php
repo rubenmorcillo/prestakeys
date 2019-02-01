@@ -55,6 +55,10 @@ class Usuario
         $this->llavesPrestadas = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getApellidos() . ', ' . $this->getNombre();
+    }
     /**
      * @return int
      */

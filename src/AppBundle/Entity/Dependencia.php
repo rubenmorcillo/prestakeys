@@ -38,6 +38,11 @@ class Dependencia
         $this->responsables = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
 
     /**
      * @return int

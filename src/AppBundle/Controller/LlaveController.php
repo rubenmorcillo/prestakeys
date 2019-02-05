@@ -34,7 +34,16 @@ class LlaveController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            try {
+                if ($request->get('borrar') === '') {
+                    $this->getDoctrine()->getManager()->remove($llave);
+                }
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('exito', 'Los cambios en la llave han sido guardados con éxito');
+                return $this->redirectToRoute('llave_listar_prestadas');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Ha ocurrido un error al guardar los cambios');
+            }
         }
         
         return $this->render('llaves/form.html.twig', [

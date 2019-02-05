@@ -30,7 +30,8 @@ class LlaveType extends AbstractType
                 'placeholder' => 'Está en conserjería'
             ])
             ->add('fechaPrestamo', null, [
-                'label' => 'Fecha del último préstamo'
+                'label' => 'Fecha del último préstamo',
+                'widget' => 'single_text'
             ]);
 
     }

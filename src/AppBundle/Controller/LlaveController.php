@@ -47,7 +47,8 @@ class LlaveController extends Controller
         }
         
         return $this->render('llaves/form.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'es_nueva' => $llave->getId() === null
         ]);
     }
 

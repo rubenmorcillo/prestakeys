@@ -13,7 +13,7 @@
     {{ form_widget(form) }}
     <a href="{{ path('llave_listar_prestadas') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Volver al listado</a>
     <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Guardar cambios</button>
-    {% if not es_nueva %}<button type="submit" name="borrar" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar llave</button>{% endif %}
+    {% if not es_nueva %}<a href="{{ path('llave_eliminar', {'id': llave.id}) }}" class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar llave</a>{% endif %}
     {{ form_end(form) }}
 
 {% endblock %}

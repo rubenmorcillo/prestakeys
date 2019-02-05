@@ -35,9 +35,6 @@ class LlaveController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                if ($request->get('borrar') === '') {
-                    $this->getDoctrine()->getManager()->remove($llave);
-                }
                 $this->getDoctrine()->getManager()->flush();
                 $this->addFlash('exito', 'Los cambios en la llave han sido guardados con éxito');
                 return $this->redirectToRoute('llave_listar_prestadas');
@@ -48,6 +45,7 @@ class LlaveController extends Controller
         
         return $this->render('llaves/form.html.twig', [
             'form' => $form->createView(),
+            'llave' => $llave,
             'es_nueva' => $llave->getId() === null
         ]);
     }
@@ -64,5 +62,27 @@ class LlaveController extends Controller
         $this->getDoctrine()->getManager()->persist($llave);
 
         return $this->formLlaveAction($request, $llave);
+    }
+
+    /**
+     * @Route("/llave/eliminar/{id}", name="llave_eliminar")
+     */
+    public function eliminarAction(Request $request, Llave $llave)
+    {
+
+        if ($request->get('borrar') === '') {
+            try {
+                $this->getDoctrine()->getManager()->remove($llave);
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('exito', 'La llave ha sido borrada');
+                return $this->redirectToRoute('llave_listar_prestadas');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Ha ocurrido un error al guardar los cambios');
+            }
+        }
+
+        return $this->render('llaves/eliminar.html.twig', [
+            'llave' => $llave
+        ]);
     }
 }

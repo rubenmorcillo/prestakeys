@@ -1,11 +1,9 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Listado de llaves prestadas{% endblock %}
+{% block title %}Listado de llaves{% endblock %}
 
 {% block content %}
-    <h1>Listado de llaves prestadas</h1>
-
-    <a href="{{ path('llave_listar') }}" class="btn btn-primary"><i class="fas fa-list-ul"></i> Ver todas</a>
+    <h1>Listado completo de llaves <a href="{{ path('llave_nueva') }}" class="btn btn-success"><i class="fas fa-plus"></i> Nueva llave</a></h1>
 
     <table class="table table-sm">
         <thead>
@@ -20,11 +18,11 @@
         <tbody>
             {% for llave in llaves %}
                 <tr>
-                    <td>{{ llave.codigo }}</td>
+                    <td><a href="{{ path('llave_editar', {'id': llave.id}) }}">{{ llave.codigo }}</a></td>
                     <td>{{ llave.descripcion }}</td>
                     <td>{{ llave.dependencia.nombre }}</td>
                     <td>{{ llave.fechaPrestamo|date('d/m/Y') }}</td>
-                    <td>{{ llave.usuario.nombre }} {{ llave.usuario.apellidos }}</td>
+                    <td>{% if llave.usuario %}{{ llave.usuario.nombre }} {{ llave.usuario.apellidos }}{% endif %}</td>
                 </tr>
             {% endfor %}
         </tbody>

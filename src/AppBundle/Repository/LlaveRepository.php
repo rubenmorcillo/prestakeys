@@ -24,4 +24,16 @@ class LlaveRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findTodas()
+    {
+        return $this->createQueryBuilder('l')
+            ->addSelect('d')
+            ->addSelect('u')
+            ->join('l.dependencia', 'd')
+            ->leftJoin('l.usuario', 'u')
+            ->orderBy('l.fechaPrestamo')
+            ->getQuery()
+            ->getResult();
+    }
 }

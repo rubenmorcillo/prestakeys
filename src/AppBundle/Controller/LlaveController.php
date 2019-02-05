@@ -24,6 +24,18 @@ class LlaveController extends Controller
     }
 
     /**
+     * @Route("/llave/listado", name="llave_listar")
+     */
+    public function listarAction(LlaveRepository $llaveRepository)
+    {
+        $llaves = $llaveRepository->findTodas();
+
+        return $this->render('llaves/listar.html.twig', [
+            'llaves' => $llaves
+        ]);
+    }
+
+    /**
      * @Route("/llave/{id}", name="llave_editar",
      *     requirements={"id":"\d+"})
      */
@@ -37,7 +49,7 @@ class LlaveController extends Controller
             try {
                 $this->getDoctrine()->getManager()->flush();
                 $this->addFlash('exito', 'Los cambios en la llave han sido guardados con éxito');
-                return $this->redirectToRoute('llave_listar_prestadas');
+                return $this->redirectToRoute('llave_listar');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Ha ocurrido un error al guardar los cambios');
             }
@@ -75,7 +87,7 @@ class LlaveController extends Controller
                 $this->getDoctrine()->getManager()->remove($llave);
                 $this->getDoctrine()->getManager()->flush();
                 $this->addFlash('exito', 'La llave ha sido borrada');
-                return $this->redirectToRoute('llave_listar_prestadas');
+                return $this->redirectToRoute('llave_listar');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Ha ocurrido un error al guardar los cambios');
             }

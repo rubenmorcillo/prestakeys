@@ -2,4 +2,12 @@
 
 {% block content %}
     <h1>¡Bienvenido a PrestaKeys!</h1>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Prestar una llave</h5>
+            <p class="card-text">Realiza un préstamo de una llave a uno de los usuarios autorizados.</p>
+            <a href="{{ path('llave_prestar_listar') }}" class="btn btn-primary stretched-link"><i class="fas fa-key"></i> Prestar</a>
+        </div>
+    </div>
 {% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Prestar una llave{% endblock %}
+
+{% block content %}
+    <h1>Prestar una llave</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <a href="{{ path('llave_prestar_listar') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Elegir otra llave</a>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-user"></i> Seleccionar usuario</button>
+    {{ form_end(form) }}
+
+    {% if ultimas_historias %}
+    <hr />
+    <h5>Últimos préstamos de la llave</h5>
+    <table class="table table-sm">
+        <thead>
+        <tr>
+            <th>Fecha préstamo</th>
+            <th>Fecha devolución</th>
+            <th>Usuario</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for historia in ultimas_historias %}
+            <tr>
+                <td>{{ historia.fechaPrestamo | date('d/m/Y') }}</td>
+                <td>{{ historia.fechaDevolucion | date('d/m/Y') }}</td>
+                <td><a href="{{ path('llave_prestar', {'codigo': llave.codigo, 'prestar': historia.usuario.id}) }}">{{ historia.usuario }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+    $( document ).ready(function() {
+        $('select').select2({
+            'theme': 'bootstrap'
+        });
+    });
+    </script>
+{% endblock %}

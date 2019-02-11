@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Prestar una llave{% endblock %}
+
+{% block content %}
+    <h1>Prestar una llave</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <a href="{{ path('portada') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Volver a la portada</a>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-key"></i> Seleccionar llave</button>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+    $( document ).ready(function() {
+        $('select').select2({
+            'theme': 'bootstrap'
+        });
+    });
+    </script>
+{% endblock %}

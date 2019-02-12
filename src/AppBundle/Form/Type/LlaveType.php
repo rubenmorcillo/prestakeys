@@ -23,15 +23,18 @@ class LlaveType extends AbstractType
             ])
             ->add('prestatario',  null, [
                 'label' => '¿Quién la ha prestado?',
-                'placeholder' => 'Nadie'
+                'placeholder' => 'Nadie',
+                'required' => false
             ])
             ->add('usuario', null, [
                 'label' => '¿Quién la tiene actualmente?',
-                'placeholder' => 'Está en conserjería'
+                'placeholder' => 'Está en conserjería',
+                'required' => false
             ])
             ->add('fechaPrestamo', null, [
                 'label' => 'Fecha del último préstamo',
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'required' => false
             ]);
 
     }

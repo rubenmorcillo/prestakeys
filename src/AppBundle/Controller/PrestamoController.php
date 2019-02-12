@@ -8,6 +8,7 @@ use AppBundle\Form\Type\PrestamoType;
 use AppBundle\Form\Type\PrestamoUsuarioType;
 use AppBundle\Repository\HistoriaRepository;
 use AppBundle\Repository\LlaveRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,6 +17,7 @@ class PrestamoController extends Controller
 {
     /**
      * @Route("/llave/prestar", name="llave_prestar_listar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ORDENANZA')")
      */
     public function prestarListarAction(Request $request, LlaveRepository $llaveRepository)
     {
@@ -42,6 +44,7 @@ class PrestamoController extends Controller
 
     /**
      * @Route("/llave/prestar/{codigo}/{prestar}", name="llave_prestar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ORDENANZA')")
      */
     public function prestarAction(
         Request $request,

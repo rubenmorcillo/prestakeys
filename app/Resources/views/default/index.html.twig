@@ -3,6 +3,7 @@
 {% block content %}
     <h1>¡Bienvenido a PrestaKeys!</h1>
 
+    {% if is_granted('ROLE_ORDENANZA') %}
     <div class="card" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Prestar una llave</h5>
@@ -10,4 +11,5 @@
             <a href="{{ path('llave_prestar_listar') }}" class="btn btn-primary stretched-link"><i class="fas fa-key"></i> Prestar</a>
         </div>
     </div>
+    {% endif %}
 {% endblock %}

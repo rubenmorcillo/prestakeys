@@ -9,12 +9,22 @@ security:
                 users:
                     usuario:
                         password: principal
-                        roles: 'ROLE_USER'
+                        roles: 'ROLE_DOCENTE'
                     admin:
                         password: chuck
-                        roles: 'ROLE_ADMIN'
+                        roles: 'ROLE_SECRETARIO'
+                    conserje:
+                        password: pepe
+                        roles: 'ROLE_ORDENANZA'
+
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
+
+    role_hierarchy:
+      ROLE_SECRETARIO: ['ROLE_DOCENTE', 'ROLE_GESTOR_PRESTAMOS']
+      ROLE_DOCENTE: 'ROLE_USER'
+      ROLE_GESTOR_PRESTAMOS: 'ROLE_USER'
+      ROLE_ORDENANZA: ['ROLE_USER', 'ROLE_GESTOR_PRESTAMOS']
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs

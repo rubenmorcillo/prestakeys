@@ -26,7 +26,7 @@ class LlaveController extends Controller
 
     /**
      * @Route("/llave/listado", name="llave_listar")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function listarAction(LlaveRepository $llaveRepository)
     {
@@ -40,7 +40,7 @@ class LlaveController extends Controller
     /**
      * @Route("/llave/{id}", name="llave_editar",
      *     requirements={"id":"\d+"})
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function formLlaveAction(Request $request, Llave $llave)
     {
@@ -82,7 +82,7 @@ class LlaveController extends Controller
 
     /**
      * @Route("/llave/eliminar/{id}", name="llave_eliminar")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function eliminarAction(Request $request, Llave $llave)
     {

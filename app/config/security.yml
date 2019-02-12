@@ -4,21 +4,13 @@ security:
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        manual:
-            memory:
-                users:
-                    usuario:
-                        password: principal
-                        roles: 'ROLE_DOCENTE'
-                    admin:
-                        password: chuck
-                        roles: 'ROLE_SECRETARIO'
-                    conserje:
-                        password: pepe
-                        roles: 'ROLE_ORDENANZA'
+        base_de_datos:
+            entity:
+                class: AppBundle\Entity\Usuario
+                property: nombreUsuario
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        AppBundle\Entity\Usuario: plaintext
 
     role_hierarchy:
       ROLE_SECRETARIO: ['ROLE_DOCENTE', 'ROLE_GESTOR_PRESTAMOS']

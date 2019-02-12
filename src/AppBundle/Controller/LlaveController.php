@@ -67,7 +67,7 @@ class LlaveController extends Controller
 
     /**
      * @Route("/llave/nueva", name="llave_nueva")
-     * @Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function formNuevaAction(Request $request)
     {

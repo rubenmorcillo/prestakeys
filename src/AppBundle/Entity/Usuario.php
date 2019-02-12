@@ -23,6 +23,18 @@ class Usuario
      * @ORM\Column(type="string")
      * @var string
      */
+    private $nombreUsuario;
+
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $clave;
+
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
     private $nombre;
 
     /**
@@ -65,6 +77,42 @@ class Usuario
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombreUsuario()
+    {
+        return $this->nombreUsuario;
+    }
+
+    /**
+     * @param string $nombreUsuario
+     * @return Usuario
+     */
+    public function setNombreUsuario($nombreUsuario)
+    {
+        $this->nombreUsuario = $nombreUsuario;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClave()
+    {
+        return $this->clave;
+    }
+
+    /**
+     * @param string $clave
+     * @return Usuario
+     */
+    public function setClave($clave)
+    {
+        $this->clave = $clave;
+        return $this;
     }
 
     /**

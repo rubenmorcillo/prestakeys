@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Llave;
 use AppBundle\Form\Type\LlaveType;
 use AppBundle\Repository\LlaveRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +26,7 @@ class LlaveController extends Controller
 
     /**
      * @Route("/llave/listado", name="llave_listar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function listarAction(LlaveRepository $llaveRepository)
     {
@@ -38,6 +40,7 @@ class LlaveController extends Controller
     /**
      * @Route("/llave/{id}", name="llave_editar",
      *     requirements={"id":"\d+"})
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function formLlaveAction(Request $request, Llave $llave)
     {
@@ -64,6 +67,7 @@ class LlaveController extends Controller
 
     /**
      * @Route("/llave/nueva", name="llave_nueva")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function formNuevaAction(Request $request)
     {
@@ -78,6 +82,7 @@ class LlaveController extends Controller
 
     /**
      * @Route("/llave/eliminar/{id}", name="llave_eliminar")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function eliminarAction(Request $request, Llave $llave)
     {

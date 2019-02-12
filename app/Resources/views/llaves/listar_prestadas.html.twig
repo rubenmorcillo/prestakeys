@@ -5,7 +5,9 @@
 {% block content %}
     <h1>Listado de llaves prestadas</h1>
 
-    <a href="{{ path('llave_listar') }}" class="btn btn-primary"><i class="fas fa-list-ul"></i> Ver todas</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('llave_listar') }}" class="btn btn-primary"><i class="fas fa-list-ul"></i> Ver todas</a>
+    {% endif %}
 
     <table class="table table-sm">
         <thead>

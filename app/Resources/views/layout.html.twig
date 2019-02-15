@@ -19,6 +19,12 @@
                     <a class="nav-link" href="{{ path('llave_listar_prestadas') }}"><i class="fas fa-key"></i> Llaves</a>
                 </li>
             </ul>
+            {% if app.user %}
+                <span class="navbar-text">¡Hola {{ app.user.nombre }}!</span>
+                <a href="{{ path('usuario_salir') }}" class="ml-3 btn btn-primary"><i class="fas fa-power-off"></i> Salir</a>
+            {% else %}
+                <a href="{{ path('usuario_entrar') }}" class="btn btn-primary"><i class="fas fa-door-open"></i> Entrar</a>
+            {% endif %}
         </div>
     </nav>
     <div class="container">

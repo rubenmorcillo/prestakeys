@@ -10,7 +10,7 @@ security:
                 property: nombreUsuario
 
     encoders:
-        AppBundle\Entity\Usuario: plaintext
+        AppBundle\Entity\Usuario: bcrypt
 
     role_hierarchy:
       ROLE_SECRETARIO: ['ROLE_DOCENTE', 'ROLE_GESTOR_PRESTAMOS']

@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Security("is_granted('ROLE_USER')")
@@ -59,7 +60,7 @@ class UsuarioController extends Controller
     /**
      * @Route("/clave", name="cambio_clave")
      */
-    public function cambioClaveAction(Request $request)
+    public function cambioClaveAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $usuario = $this->getUser();
 
@@ -72,7 +73,10 @@ class UsuarioController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $usuario->setClave(
-                    $form->get('nuevaClave')->getData()
+                    $passwordEncoder->encodePassword(
+                        $usuario,
+                        $form->get('nuevaClave')->getData()
+                    )
                 );
 
                 $this->getDoctrine()->getManager()->flush();

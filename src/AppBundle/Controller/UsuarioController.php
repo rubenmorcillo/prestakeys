@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\CambioClaveType;
 use AppBundle\Form\Type\UsuarioType;
 use AppBundle\Repository\UsuarioRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -50,6 +51,39 @@ class UsuarioController extends Controller
         }
 
         return $this->render('usuario/personal.html.twig', [
+            'form' => $form->createView(),
+            'usuario' => $usuario
+        ]);
+    }
+
+    /**
+     * @Route("/clave", name="cambio_clave")
+     */
+    public function cambioClaveAction(Request $request)
+    {
+        $usuario = $this->getUser();
+
+        $form = $this->createForm(CambioClaveType::class, $usuario, [
+            'es_admin' => false
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $usuario->setClave(
+                    $form->get('nuevaClave')->getData()
+                );
+
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('exito', 'Nueva contraseña guardada con éxito');
+                return $this->redirectToRoute('portada');
+            } catch (\Exception $e) {
+                $this->addFlash('error', 'Ha ocurrido un error al guardar la contraseña');
+            }
+        }
+
+        return $this->render('usuario/cambio_clave.html.twig', [
             'form' => $form->createView(),
             'usuario' => $usuario
         ]);

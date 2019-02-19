@@ -18,8 +18,7 @@ class UsuarioType extends AbstractType
 
         $builder
             ->add('nombre')
-            ->add('apellidos')
-            ->add('clave');
+            ->add('apellidos');
 
         if ($options['es_admin']) {
             $builder

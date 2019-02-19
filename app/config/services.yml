@@ -29,6 +29,14 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    AppBundle\DataFixtures\Provider\ClaveProvider:
+        tags: [ { name: nelmio_alice.faker.provider }]
+
+    #AppBundle\DataFixtures\Provider\ClaveProvider:
+    #    arguments: ['@nelmio_alice.faker.generator']
+    #    autowire: true
+    #    tags: [ { name: nelmio_alice.faker.provider }]
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

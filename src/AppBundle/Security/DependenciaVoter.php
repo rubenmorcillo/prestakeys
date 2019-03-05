@@ -6,11 +6,21 @@ namespace AppBundle\Security;
 use AppBundle\Entity\Dependencia;
 use AppBundle\Entity\Usuario;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
 class DependenciaVoter extends Voter
 {
     const MODIFICAR = 'DEPENDENCIA_MODIFICAR';
+    /**
+     * @var AccessDecisionManagerInterface
+     */
+    private $accessDecisionManager;
+
+    public function __construct(AccessDecisionManagerInterface $accessDecisionManager)
+    {
+        $this->accessDecisionManager = $accessDecisionManager;
+    }
 
     /**
      * Determines if the attribute and subject are supported by this voter.
@@ -54,7 +64,7 @@ class DependenciaVoter extends Voter
 
         switch($attribute) {
             case self::MODIFICAR:
-                if ($usuario->isSecretario()) {
+                if ($this->accessDecisionManager->decide($token, ['ROLE_SECRETARIO'])) {
                     return true;
                 }
                 if ($subject->getResponsables()->contains($usuario)) {

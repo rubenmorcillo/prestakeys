@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Dependencia;
 use AppBundle\Form\Type\DependenciaType;
+use AppBundle\Repository\DependenciaRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class DependenciaController extends Controller
 {
+    /**
+     * @Route("/listado", name="dependencia_listar")
+     * @Security("is_granted('ROLE_SECRETARIO')")
+     */
+    public function listarAction(DependenciaRepository $dependenciaRepository)
+    {
+        $dependencias = $dependenciaRepository->findTodas();
+
+        return $this->render('dependencia/listar.html.twig', [
+            'dependencias' => $dependencias
+        ]);
+    }
+
     /**
      * @Route("/{id}", name="dependencia_editar",
      *     requirements={"id":"\d+"})
@@ -31,7 +45,7 @@ class DependenciaController extends Controller
             try {
                 $this->getDoctrine()->getManager()->flush();
                 $this->addFlash('exito', 'Los cambios en la dependencia han sido guardados con éxito');
-                return $this->redirectToRoute('portada');
+                return $this->redirectToRoute('dependencia_listar');
             } catch (\Exception $e) {
                 $this->addFlash('error', 'Ha ocurrido un error al guardar los cambios');
             }

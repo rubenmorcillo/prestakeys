@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Listado de dependencias{% endblock %}
+
+{% block content %}
+    <h1>Listado completo de dependencias</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Responsables</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dependencia in dependencias %}
+                <tr>
+                    <td><a href="{{ path('dependencia_editar', {'id': dependencia.id}) }}">{{ dependencia.nombre }}</a></td>
+                    <td>{{ dependencia.responsables|join('; ') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

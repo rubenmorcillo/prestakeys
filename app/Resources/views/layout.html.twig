@@ -18,6 +18,9 @@
                 <li class="nav-item{% if ruta starts with "llave_" %} active{% endif %}">
                     <a class="nav-link" href="{{ path('llave_listar_prestadas') }}"><i class="fas fa-key"></i> Llaves</a>
                 </li>
+                <li class="nav-item{% if ruta starts with "dependencia_" %} active{% endif %}">
+                    <a class="nav-link" href="{{ path('dependencia_listar') }}"><i class="fas fa-building"></i> Dependencias</a>
+                </li>
             </ul>
             {% if app.user %}
                 <span class="navbar-text">¡Hola <a href="{{ path('datos_personales') }}">{{ app.user.nombre }}</a>!</span>

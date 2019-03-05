@@ -32,6 +32,7 @@ class DependenciaController extends Controller
     /**
      * @Route("/{id}", name="dependencia_editar",
      *     requirements={"id":"\d+"})
+     * @Security("is_granted('DEPENDENCIA_MODIFICAR', dependencia)")
      */
     public function formDependenciaAction(Request $request, Dependencia $dependencia)
     {

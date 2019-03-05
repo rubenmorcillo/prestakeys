@@ -73,7 +73,7 @@ class Dependencia
     /**
      * @return Usuario[]
      */
-    public function getResponsables(): array
+    public function getResponsables()
     {
         return $this->responsables;
     }
@@ -82,7 +82,7 @@ class Dependencia
      * @param Usuario[] $responsables
      * @return Dependencia
      */
-    public function setResponsables(array $responsables)
+    public function setResponsables($responsables)
     {
         $this->responsables = $responsables;
         return $this;

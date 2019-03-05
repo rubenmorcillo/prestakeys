@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Modificar dependencia{% endblock %}
+
+{% block content %}
+    <h1>Modificar dependencia</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <a href="{{ path('portada') }}" class="btn btn-info"><i class="fas fa-arrow-left"></i> Volver a la portada</a>
+    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Guardar cambios</button>
+    {{ form_end(form) }}
+{% endblock %}

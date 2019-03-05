@@ -11,12 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * @Route("/llave")
  * @Security("is_granted('ROLE_USER')")
  */
 class LlaveController extends Controller
 {
     /**
-     * @Route("/llave/prestadas", name="llave_listar_prestadas")
+     * @Route("/prestadas", name="llave_listar_prestadas")
      */
     public function listarPrestadasAction(LlaveRepository $llaveRepository)
     {
@@ -28,7 +29,7 @@ class LlaveController extends Controller
     }
 
     /**
-     * @Route("/llave/listado", name="llave_listar")
+     * @Route("/listado", name="llave_listar")
      * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function listarAction(LlaveRepository $llaveRepository)
@@ -41,7 +42,7 @@ class LlaveController extends Controller
     }
 
     /**
-     * @Route("/llave/{id}", name="llave_editar",
+     * @Route("/{id}", name="llave_editar",
      *     requirements={"id":"\d+"})
      * @Security("is_granted('ROLE_SECRETARIO')")
      */
@@ -69,7 +70,7 @@ class LlaveController extends Controller
     }
 
     /**
-     * @Route("/llave/nueva", name="llave_nueva")
+     * @Route("/nueva", name="llave_nueva")
      * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function formNuevaAction(Request $request)
@@ -84,7 +85,7 @@ class LlaveController extends Controller
     }
 
     /**
-     * @Route("/llave/eliminar/{id}", name="llave_eliminar")
+     * @Route("/eliminar/{id}", name="llave_eliminar")
      * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function eliminarAction(Request $request, Llave $llave)

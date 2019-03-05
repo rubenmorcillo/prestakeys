@@ -35,5 +35,13 @@
         <script src="{{ asset('select2-4.0.6-rc.1/dist/js/i18n/es.js') }}"></script>
 
         {% block javascripts %}{% endblock %}
+
+        <script>
+            $(document).ready(function() {
+                $('select').select2({
+                    theme: "bootstrap"
+                });
+            });
+        </script>
     </body>
 </html>

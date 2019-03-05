@@ -29,6 +29,19 @@ class DependenciaController extends Controller
     }
 
     /**
+     * @Route("/nueva", name="dependencia_nueva")
+     * @Security("is_granted('DEPENDENCIA_CREAR')")
+     */
+    public function formNuevaAction(Request $request)
+    {
+        $dependencia = new Dependencia();
+
+        $this->getDoctrine()->getManager()->persist($dependencia);
+
+        return $this->formDependenciaAction($request, $dependencia);
+    }
+
+    /**
      * @Route("/{id}", name="dependencia_editar",
      *     requirements={"id":"\d+"})
      * @Security("is_granted('DEPENDENCIA_MODIFICAR', dependencia)")

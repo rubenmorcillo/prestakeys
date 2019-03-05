@@ -1,9 +1,13 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Modificar dependencia{% endblock %}
+{% block title %}{% if dependencia.id %}Modificar dependencia{% else %}Nueva dependencia{% endif %}{% endblock %}
 
 {% block content %}
-    <h1>Modificar dependencia</h1>
+    {% if dependencia.id %}
+        <h1>Modificar dependencia</h1>
+    {% else %}
+        <h1>Nueva dependencia</h1>
+    {% endif %}
 
     {{ form_start(form) }}
     {{ form_widget(form) }}

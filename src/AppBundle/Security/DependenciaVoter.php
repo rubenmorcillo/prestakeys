@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 class DependenciaVoter extends Voter
 {
     const MODIFICAR = 'DEPENDENCIA_MODIFICAR';
+    const CREAR = 'DEPENDENCIA_CREAR';
+
     /**
      * @var AccessDecisionManagerInterface
      */
@@ -32,11 +34,15 @@ class DependenciaVoter extends Voter
      */
     protected function supports($attribute, $subject)
     {
+        if ($attribute === self::CREAR && $subject === null) {
+            return true;
+        }
+
         if (false == $subject instanceof Dependencia) {
             return false;
         }
 
-        if ($attribute != self::MODIFICAR) {
+        if (!in_array($attribute, [self::MODIFICAR], true)) {
             return false;
         }
 
@@ -55,21 +61,28 @@ class DependenciaVoter extends Voter
      */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
-        if (false == $subject instanceof Dependencia) {
-            return false;
-        }
-
         /** @var Usuario $usuario */
         $usuario = $token->getUser();
 
         switch($attribute) {
+
             case self::MODIFICAR:
+                if (false == $subject instanceof Dependencia) {
+                    return false;
+                }
                 if ($this->accessDecisionManager->decide($token, ['ROLE_SECRETARIO'])) {
                     return true;
                 }
                 if ($subject->getResponsables()->contains($usuario)) {
                     return true;
                 }
+                return false;
+
+            case self::CREAR:
+                if ($this->accessDecisionManager->decide($token, ['ROLE_SECRETARIO'])) {
+                    return true;
+                }
+                return false;
 
         }
 

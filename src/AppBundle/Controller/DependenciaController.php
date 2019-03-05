@@ -18,7 +18,6 @@ class DependenciaController extends Controller
 {
     /**
      * @Route("/listado", name="dependencia_listar")
-     * @Security("is_granted('ROLE_SECRETARIO')")
      */
     public function listarAction(DependenciaRepository $dependenciaRepository)
     {

@@ -15,7 +15,13 @@
         <tbody>
             {% for dependencia in dependencias %}
                 <tr>
-                    <td><a href="{{ path('dependencia_editar', {'id': dependencia.id}) }}">{{ dependencia.nombre }}</a></td>
+                    <td>
+                        {% if is_granted('DEPENDENCIA_MODIFICAR', dependencia) %}
+                            <a href="{{ path('dependencia_editar', {'id': dependencia.id}) }}">{{ dependencia.nombre }}</a>
+                        {% else %}
+                            {{ dependencia.nombre }}
+                        {% endif %}
+                    </td>
                     <td>{{ dependencia.responsables|join('; ') }}</td>
                 </tr>
             {% endfor %}
